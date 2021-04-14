@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block body %}
+    <form action="login" method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Username : </td>
+                <td>
+                    <input type="text" name="username" placeholder="Userame">
+                </td>
+            </tr>
+            <tr>
+                <td>Password : </td>
+                <td>
+                    <input type="password" name="password" placeholder="Password">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Login">
+                </td>
+                {% for msg in messages %}
+                <td>{{ msg }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </form>
+    <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+{% endblock %}

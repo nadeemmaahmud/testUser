@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block body %}
+    {% if user.is_authenticated %}
+    <form action="save" method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Name : </td>
+                <td>
+                    <input type="text" name="name" placeholder="Name">
+                </td>
+            </tr>
+            <tr>
+                <td>Data : </td>
+                <td>
+                    <input type="text" name="data" placeholder="Data">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="SAVE">
+                </td>
+                {% for msg in messages %}
+                <td>{{ msg }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </form>
+    {% endif %}
+    {% for items in db %}
+        <p>Name : {{ items.name }}</p>
+        <p>Data : {{ items.data }}</p>
+        <p>@{{ items.user }}</p><br>
+    {% endfor %}
+{% endblock %}

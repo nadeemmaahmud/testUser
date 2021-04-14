@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock%}
+{% block body %}
+    <form action="register" method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>First Name : </td>
+                <td>
+                    <input type="text" name="firstName" placeholder="First Name">
+                </td>
+            </tr>
+            <tr>
+                <td>Last Name : </td>
+                <td>
+                    <input type="text" name="lastName" placeholder="Last Name">
+                </td>
+            </tr>
+            <tr>
+                <td>Username : </td>
+                <td>
+                    <input type="text" name="userName" placeholder="Username">
+                </td>
+            </tr>
+            <tr>
+                <td>Enter Password : </td>
+                <td>
+                    <input type="password" name="password1" placeholder="Enter Password">
+                </td>
+            </tr>
+            <tr>
+                <td>Confirm Password : </td>
+                <td>
+                    <input type="password" name="password2" placeholder="Confirm Password">
+                </td>
+            </tr>
+            <tr>
+                <td>Email : </td>
+                <td>
+                    <input type="email" name="email" placeholder="Email">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Register">
+                </td>
+                {% for msg in messages %}
+                <td>{{ msg }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </form>
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+{% endblock  %}
